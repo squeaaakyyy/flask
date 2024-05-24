@@ -1,0 +1,68 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1, h2, h3, h4, h5, p, a ul, li {
+    padding: 0;
+    margin: 0;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+li {
+    list-style-type: none;
+}
+
+
+body {
+    background-color: rgb(40, 40, 95);
+    color: #fff;
+}
+header {
+    background-color: rgb(67, 67, 144);
+}
+.container-header__row {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+}
+.container-header__ul a:hover {
+    color: rgb(101, 101, 201)
+}
+.container-header__ul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.container-header__ul li {
+    display: inline-block;
+}
+
+
+/* Ссылки для разбиения на страницы */
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+/* Стиль активной/текущей ссылки */
+.pagination a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Добавить серый цвет фона при наведении курсора мыши */
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination__disabled {
+    display:none;
+
+}
+
+
