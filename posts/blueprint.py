@@ -29,18 +29,31 @@ def create_post():
 
                 isTrue = False
                 tagSplit = tag.split('*')
-                print(tagSplit)
-                for t in range(len(Tag.query.all())):
-                    if str(Tag.query.all()[t].name) in tagSplit:
-                        print('rererere')
-                        post.tags.append(Tag.query.all()[t])
-                        isTrue = True
-                        db.session.add(post)
-                        break
+                # print(tagSplit)
+                allTagName = []
+                for i in Tag.query.all():
+                    allTagName.append(i.name)
+                print(allTagName)
+                # for t in range(len(Tag.query.all())):
+                #     if str(Tag.query.all()[t].name) in tagSplit:
+                #         print('rererere')
+                #         post.tags.append(Tag.query.all()[t])
+                #         isTrue = True
+                #         db.session.add(post)
+                #         break
+                #
+                # if isTrue == False:
+                #     # tag = Tag(name=tag.split(','))
+                #     for t in range(len(tagSplit)):
+                #         newTag = Tag(name=tagSplit[t])
+                #         post.tags.append(newTag)
+                #         db.session.add(newTag, post)
 
-                if isTrue == False:
-                    # tag = Tag(name=tag.split(','))
-                    for t in range(len(tagSplit)):
+                for t in range(len(tagSplit)):
+                    if tagSplit[t] in allTagName:
+                        post.tags.append(Tag.query.filter(Tag.name==tagSplit[t]).first())
+                        db.session.add(post)
+                    else:
                         newTag = Tag(name=tagSplit[t])
                         post.tags.append(newTag)
                         db.session.add(newTag, post)
