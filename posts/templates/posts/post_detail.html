@@ -5,10 +5,13 @@
 {% endblock %}
 
 {% block article_1 %}
-    <h1>{{ post.title }}</h1>
-    {% for tag in tags %}
-        <a href="{{ url_for('posts.tag_detail', slug=tag.slug) }}">{{ tag.name }}</a>
+    <div class="post-detail">
+        <h1 class="post-detail__h1">{{ post.title }}</h1>
+        {% for tag in tags %}
+            <a href="{{ url_for('posts.tag_detail', slug=tag.slug) }}" class="post-detail__a">{{ tag.name }}</a>
+        {% endfor %}
+        <p class="post-detail__p">{{ post.body }}</p>
+    </div>
 
-    {% endfor %}
-    {{ post.body }}
+
 {% endblock %}

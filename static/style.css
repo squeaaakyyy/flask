@@ -3,7 +3,7 @@
     margin: 0;
 }
 
-h1, h2, h3, h4, h5, p, a ul, li {
+h1, h2, h3, h4, h5, p, a ul, li, nav {
     padding: 0;
     margin: 0;
 }
@@ -19,9 +19,11 @@ li {
 body {
     background-color: rgb(40, 40, 95);
     color: #fff;
+    font-weight: 700;
 }
 header {
     background-color: rgb(67, 67, 144);
+    margin-bottom: 20px;
 }
 .container-header__row {
     display: flex;
@@ -29,7 +31,7 @@ header {
     height: 100%;
 }
 .container-header__ul a:hover {
-    color: rgb(101, 101, 201)
+    color: rgb(194, 186, 245);
 }
 .container-header__ul {
     display: flex;
@@ -42,13 +44,24 @@ header {
 }
 
 
+.main__index__h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.main__index__a {
+    color: rgb(135, 120, 235);
+}
+
 /* Ссылки для разбиения на страницы */
 .pagination a {
-  color: black;
+  color: white;
   float: left;
+  font-weight: 700;
   padding: 8px 16px;
   text-decoration: none;
   transition: background-color .3s;
+  background-color: rgb(135, 120, 235);
+  border-radius: 12px;
 }
 
 /* Стиль активной/текущей ссылки */
@@ -58,11 +71,43 @@ header {
 }
 
 /* Добавить серый цвет фона при наведении курсора мыши */
-.pagination a:hover:not(.active) {background-color: #ddd;}
+.pagination a:hover:not(.active) {background-color: rgb(194, 186, 245); color: white;}
 
 .pagination__disabled {
     display:none;
 
 }
 
+
+
+
+.article_1__p {
+    background-color: rgb(96, 78, 207);
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 10px 10px;
+    font-weight: 700;
+    font-size: 24px;
+}
+a:hover {
+    color: rgb(194, 186, 245);
+}
+
+
+
+.post-detail {
+    background-color: rgb(96, 78, 207);
+    border-radius: 12px;
+    padding: 20px 20px;
+}
+
+.post-detail__h1 {
+    font-weight: 700;
+}
+.post-detail__a {
+    font-weight: 500;
+}
+.post-detail__p {
+    font-weight: 400;
+}
 

@@ -7,6 +7,6 @@
 {% block article_1 %}
 
    {% for post in posts %}
-      <a href="{{ url_for('posts.post_detail', slug=post.slug) }}">{{ post.title }}</a>
+<p class="article_1__p"><a href="{{ url_for('posts.post_detail', slug=post.slug) }}">{{ post.title }}</a></p>
    {% endfor %}
 {% endblock %}

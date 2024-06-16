@@ -5,6 +5,9 @@
 {% endblock %}
 
 {% block article_1 %}
-   <h1>Hello</h1>
+   <h1 class="main__index__h1">Музыкальный новостной сайт MNS</h1>
+
+   <h3>Нажмите на раздел <a href=" {{ url_for('posts.index') }} " class="main__index__a">"Новости"</a>, чтобы посмотреть актуальные новости</h3>
+   <h3>Нажмите на раздел <a href=" {{ url_for('posts.tag_list') }} " class="main__index__a">"Музыканты"</a>, чтобы выбрать новости только интересующего вас музыканта</h3>
 
 {% endblock %}

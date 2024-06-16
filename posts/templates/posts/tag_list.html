@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Tag List
+    Музыканты
 {% endblock %}
 
 {% block article_1 %}
@@ -11,7 +11,9 @@
 
       <ul>
          {% for tag in tags %}
-         <li><a href="{{ url_for('posts.tag_detail', slug=tag.slug) }}">{{ tag.name }}</a></li>
+         {% if tag.posts.all() != [] %}
+            <li><p class="article_1__p"><a href="{{ url_for('posts.tag_detail', slug=tag.slug) }}">{{ tag.name }}</a></p></li>
+         {% endif %}
       {% endfor %}
       </ul>
 

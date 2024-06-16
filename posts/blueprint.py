@@ -4,7 +4,7 @@ from flask import request
 from flask import redirect
 from flask import url_for
 
-from .forms import PostForm
+from .forms import PostForm, PostEditForm
 # from app import db
 
 from flask_security import login_required
@@ -25,17 +25,32 @@ def create_post():
 
         if title:
             try:
-                tag = Tag(name=tag)
                 post = Post(title=title, body=body)
-                post.tags.append(tag)
+
+                isTrue = False
+                tagSplit = tag.split('*')
+                print(tagSplit)
+                for t in range(len(Tag.query.all())):
+                    if str(Tag.query.all()[t].name) in tagSplit:
+                        print('rererere')
+                        post.tags.append(Tag.query.all()[t])
+                        isTrue = True
+                        db.session.add(post)
+                        break
+
+                if isTrue == False:
+                    # tag = Tag(name=tag.split(','))
+                    for t in range(len(tagSplit)):
+                        newTag = Tag(name=tagSplit[t])
+                        post.tags.append(newTag)
+                        db.session.add(newTag, post)
 
                 # print(tag)
-                db.session.add(tag, post)
-                print(post.tags)
-                print(tag)
+                # print(post.tags)
+                # print(tag)
                 db.session.commit()
-            except:
-                print('не удалось создать новость')
+            except Exception as e:
+                print(e)
 
             return redirect(url_for('posts.index'))
 
@@ -47,6 +62,7 @@ def create_post():
 @login_required
 def edit_post(slug):
     post = Post.query.filter(Post.slug==slug).first()
+    # print(Post.query.filter(Post.slug==slug).first().exists())
 
     if request.method == 'POST':
         form = PostForm(formdata=request.form, obj=post)
@@ -55,10 +71,22 @@ def edit_post(slug):
 
         return redirect(url_for('posts.post_detail', slug=post.slug))
 
-    form = PostForm(obj=post)
+    form = PostEditForm(obj=post)
     return render_template('posts/edit_post.html', post=post, form=form)
 
 
+@posts.route('/<slug>/delete/', methods=['POST', 'GET'])
+@login_required
+def delete_post(slug):
+    post = Post.query.filter(Post.slug==slug).first()
+
+    try:
+        db.session.delete(post)
+        db.session.commit()
+        print("удаление прошло успешно")
+        return redirect(url_for('posts.index'))
+    except:
+        print('при удаленияя произошла ошибка')
 
 
 
@@ -109,6 +137,6 @@ def tag_list():
 @posts.route('/tags/<slug>')
 def tag_detail(slug):
     tag = Tag.query.filter(Tag.slug == slug).first()
-    posts = tag.posts.all()
+    posts = tag.posts.order_by(Post.created_on.desc())
     return render_template('posts/tag_detail.html', tag=tag, posts=posts)
 
