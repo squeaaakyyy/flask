@@ -21,6 +21,12 @@ body {
     color: #fff;
     font-weight: 700;
 }
+input, textarea {
+    width: 100%;
+}
+textarea {
+    height: 200px;
+}
 header {
     background-color: rgb(67, 67, 144);
     margin-bottom: 20px;
